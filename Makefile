@@ -16,8 +16,7 @@ all: $(NAME)
 $(NAME) : $(OBJ)
 	@ ar rcs $(NAME) $(OBJ)
 
-
-%.o: %.c
+%.o: %.c 
 	@ $(CC) $(FLAGS) -c $< -o $@
 	@ echo "$(YELLOW)Compiling $< into $@ $(RESET)"
 	@ echo "$()"
