@@ -1,27 +1,37 @@
-NAME=libftprintf.a
-CC=-Wall -Wextra -Werror
+GREEN = \033[38;5;2m
+YELLOW = \033[38;5;3m
+RESET = \033[0m
 
-MAGENTA=\033[38;5;13m
-BLACK=\033[38;5;0m
-RED=\033[38;5;1m
-GREEN=\033[38;5;2m
-YELLOW=\033[38;5;3m
-BLUE=\033[38;5;4m
-CYAN=\033[38;5;6m
-WHITE=\033[38;5;7m
-RESET=\033[0m
+####################
+NAME = libftprintf.a
+CC = cc
+FLAGS = -Wall -Werror -Wextra
+SRC = ft_printf.c
+OBJ = $(SRC:.c=.o)
 
-all:
-	@ echo "$(MAGENTA)all$(RESET)"
+all: $(NAME)
+	@ echo "$(GREEN)Completed succifilly$(RESET)"
+	@ echo "$()"
+
+$(NAME) : $(OBJ)
+	@ ar rcs $(NAME) $(OBJ)
+
+
+%.o: %.c
+	@ $(CC) $(FLAGS) -c $< -o $@
+	@ echo "$(YELLOW)Compiling $< into $@ $(RESET)"
+	@ echo "$()"
 
 clean:
-	@ echo "$(GREEN)clean$(RESET)"
+	@ rm -f $(OBJ)
+	@ echo "$(GREEN)Remove objects... $(OBJ) $(RESET)"
 
-fclean: 
-	@ echo "$(GREEN)fclean$(RESET)"
+fclean: clean
+	@ rm -f $(NAME)
+	@ echo "$(GREEN)Remove $(NAME) $(RESET)"
+	@ echo "$()"
 
-re: fclean all
-	@ @ echo "$(CYAN)re$(RESET)"
+re:
+	@ $(MAKE) -s fclean && $(MAKE) -s all
 
 .PHONY: all clean fclean re
-MAGENTA
