@@ -6,25 +6,23 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:59:44 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 15:59:44 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:29:08 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(va_list args)
+int	ft_putstr(const char *str)
 {
-	char	*str;
-	int		count;
+	int	char_written;
 
-	str = va_arg(args, char *);
-	count = 0;
+	char_written = 0;
 	if (str == NULL)
 		str = "(null)";
 	while (*str)
 	{
-		count += write(1, str, 1);
+		char_written += write(1, str, 1);
 		str++;
 	}
-	return (count);
+	return (char_written);
 }

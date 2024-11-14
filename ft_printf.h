@@ -6,7 +6,7 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:00:49 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 16:12:58 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:31:18 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <unistd.h>
 
 int	ft_printf(const char *string, ...);
-int	ft_putchar(va_list args);
-int	ft_putstr(va_list args);
-int	ft_putptr(va_list args, int uppercase);
+int	ft_putchar(int c);
+int	ft_putstr(const char *str);
+int	ft_putptr(void *ptr, int uppercase);
 
 #endif /* FT_PRINTF_H */

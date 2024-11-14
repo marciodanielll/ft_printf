@@ -6,54 +6,51 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:18:31 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 16:16:24 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:25:43 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	handle_format(const char **input, va_list args)
+static int	parse_format_specifier(const char **input, va_list args)
 {
-	int	count;
+	int		char_written;
+	char	specifier;
 
-	count = 0;
-	if (*(*input + 1) == 'c')
+	char_written = 0;
+	specifier = *(*input + 1);
+	if (specifier == 'c')
 	{
-		count += ft_putchar(args);
+		char_written += ft_putchar(va_arg(args, int));
 		*input += 2;
 	}
-	else if (*(*input + 1) == 's')
+	else if (specifier == 's')
 	{
-		count += ft_putstr(args);
+		char_written += ft_putstr(va_arg(args, char *));
 		*input += 2;
 	}
-	else if (*(*input + 1) == 'p')
+	else if (specifier == 'p')
 	{
-		count += ft_putptr(args, 0);
+		char_written += ft_putptr(va_arg(args, void *), 0);
 		*input += 2;
 	}
-	return (count);
+	return (char_written);
 }
 
 int	ft_printf(const char *input, ...)
 {
 	va_list	args;
-	int		count;
+	int		char_written;
 
-	count = 0;
+	char_written = 0;
 	va_start(args, input);
 	while (*input)
 	{
 		if (*input == '%')
-		{
-			count += handle_format(&input, args);
-		}
+			char_written += parse_format_specifier(&input, args);
 		else
-		{
-			count += write(1, input, 1);
-			input++;
-		}
+			char_written += write(1, input++, 1);
 	}
 	va_end(args);
-	return (count);
+	return (char_written);
 }
