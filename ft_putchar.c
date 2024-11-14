@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 18:00:49 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 15:58:35 by mhermini         ###   ########.fr       */
+/*   Created: 2024/11/14 15:47:12 by mhermini          #+#    #+#             */
+/*   Updated: 2024/11/14 15:47:12 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include <stdlib.h>
-#include <stdarg.h> 
-#include <unistd.h>
+int	ft_putchar(va_list args)
+{
+	char	temp;
 
-int	ft_printf(const char *string, ...);
-int	ft_putchar(va_list args);
-
-#endif /* FT_PRINTF_H */
+	temp = (char)va_arg(args, int);
+	write(1, &temp, 1);
+	return (1);
+}

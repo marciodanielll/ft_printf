@@ -6,7 +6,7 @@ RESET = \033[0m
 NAME = libftprintf.a
 CC = cc
 FLAGS = -Wall -Werror -Wextra
-SRC = ft_printf.c
+SRC = ft_printf.c ft_putchar.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
@@ -16,7 +16,7 @@ all: $(NAME)
 $(NAME) : $(OBJ)
 	@ ar rcs $(NAME) $(OBJ)
 
-%.o: %.c 
+%.o: %.c ft_printf.h
 	@ $(CC) $(FLAGS) -c $< -o $@
 	@ echo "$(YELLOW)Compiling $< into $@ $(RESET)"
 	@ echo "$()"
