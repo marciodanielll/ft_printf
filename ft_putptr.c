@@ -6,12 +6,11 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:06:01 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 19:00:30 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 20:26:52 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 static int	ft_print_hex_recursive(unsigned long addr, char *hex_digits)
 {
