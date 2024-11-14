@@ -1,1 +1,5 @@
 pt_br.subject.pdf
+printfTester
+.vscode
+*.o
+*.a
