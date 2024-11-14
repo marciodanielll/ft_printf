@@ -6,11 +6,12 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:59:44 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 16:29:08 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:02:30 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <unistd.h>
 
 int	ft_putstr(const char *str)
 {
