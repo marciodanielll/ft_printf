@@ -6,28 +6,11 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:18:31 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 15:51:24 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:02:10 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_putstr(va_list args)
-{
-	char	*str;
-	int		count;
-
-	str = va_arg(args, char *);
-	count = 0;
-	if (str == NULL)
-		str = "(null)";
-	while (*str)
-	{
-		count += write(1, str, 1);
-		str++;
-	}
-	return (count);
-}
 
 int	ft_print_hex(unsigned long addr)
 {
