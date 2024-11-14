@@ -6,24 +6,24 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:06:01 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 16:31:58 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:34:32 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_print_hex(unsigned long addr, char *hex_digits)
+static int	ft_print_hex_recursive(unsigned long addr, char *hex_digits)
 {
 	int	char_written;
 
 	char_written = 0;
 	if (addr >= 16)
-		char_written += ft_print_hex(addr / 16, hex_digits);
+		char_written += ft_print_hex_recursive(addr / 16, hex_digits);
 	char_written += write(1, &hex_digits[addr % 16], 1);
 	return (char_written);
 }
 
-static int	ft_print_hex_factory(unsigned long addr, int uppercase)
+static int	ft_print_hex_with_case(unsigned long addr, int uppercase)
 {
 	char	*hex_digits;
 
@@ -31,10 +31,10 @@ static int	ft_print_hex_factory(unsigned long addr, int uppercase)
 		hex_digits = "0123456789ABCDEF";
 	else
 		hex_digits = "0123456789abcdef";
-	return (ft_print_hex(addr, hex_digits));
+	return (ft_print_hex_recursive(addr, hex_digits));
 }
 
-int	ft_putptr(void *ptr, int uppercase)
+int	ft_print_pointer_with_prefix(void *ptr, int uppercase)
 {
 	unsigned long	addr;
 	int				char_written;
@@ -47,6 +47,6 @@ int	ft_putptr(void *ptr, int uppercase)
 		char_written += write(1, "0X", 2);
 	else
 		char_written += write(1, "0x", 2);
-	char_written += ft_print_hex_factory(addr, uppercase);
+	char_written += ft_print_hex_with_case(addr, uppercase);
 	return (char_written);
 }
