@@ -6,7 +6,7 @@ RESET = \033[0m
 NAME = libftprintf.a
 CC = cc
 FLAGS = -Wall -Werror -Wextra
-SRC = ft_printf.c ft_putchar.c ft_putstr.c ft_putptr.c
+SRC = ft_printf.c ft_putchar.c ft_putstr.c ft_putptr.c ft_putnbr.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

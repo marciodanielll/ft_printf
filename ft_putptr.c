@@ -6,7 +6,7 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:06:01 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 16:34:32 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:48:10 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_print_hex_with_case(unsigned long addr, int uppercase)
 	return (ft_print_hex_recursive(addr, hex_digits));
 }
 
-int	ft_print_pointer_with_prefix(void *ptr, int uppercase)
+int	ft_putptr(void *ptr, int uppercase)
 {
 	unsigned long	addr;
 	int				char_written;

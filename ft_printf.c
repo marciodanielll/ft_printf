@@ -6,34 +6,34 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:18:31 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 16:25:43 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:49:28 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int	handle_specifier(char specifier, va_list args)
+{
+	if (specifier == 'c')
+		return (ft_putchar(va_arg(args, int)));
+	else if (specifier == 's')
+		return (ft_putstr(va_arg(args, char *)));
+	else if (specifier == 'p')
+		return (ft_putptr(va_arg(args, void *), 0));
+	else if (specifier == 'd')
+		return (ft_putnbr(va_arg(args, int)));
+	return (0);
+}
 
 static int	parse_format_specifier(const char **input, va_list args)
 {
 	int		char_written;
 	char	specifier;
 
-	char_written = 0;
 	specifier = *(*input + 1);
-	if (specifier == 'c')
-	{
-		char_written += ft_putchar(va_arg(args, int));
+	char_written = handle_specifier(specifier, args);
+	if (char_written)
 		*input += 2;
-	}
-	else if (specifier == 's')
-	{
-		char_written += ft_putstr(va_arg(args, char *));
-		*input += 2;
-	}
-	else if (specifier == 'p')
-	{
-		char_written += ft_putptr(va_arg(args, void *), 0);
-		*input += 2;
-	}
 	return (char_written);
 }
 
