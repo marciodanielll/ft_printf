@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   ft_puthex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 16:06:01 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 19:00:30 by mhermini         ###   ########.fr       */
+/*   Created: 2024/11/14 18:53:26 by mhermini          #+#    #+#             */
+/*   Updated: 2024/11/14 19:14:00 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-static int	ft_print_hex_recursive(unsigned long addr, char *hex_digits)
+static int	ft_print_hex_recursive(unsigned long addr, const char *hex_digits)
 {
 	int	char_written;
 
@@ -26,7 +25,7 @@ static int	ft_print_hex_recursive(unsigned long addr, char *hex_digits)
 
 static int	ft_print_hex_with_case(unsigned long addr, int uppercase)
 {
-	char	*hex_digits;
+	const char	*hex_digits;
 
 	if (uppercase)
 		hex_digits = "0123456789ABCDEF";
@@ -35,19 +34,7 @@ static int	ft_print_hex_with_case(unsigned long addr, int uppercase)
 	return (ft_print_hex_recursive(addr, hex_digits));
 }
 
-int	ft_putptr(void *ptr, int uppercase)
+int	ft_puthex(unsigned int num, int uppercase)
 {
-	unsigned long	addr;
-	int				char_written;
-
-	addr = (unsigned long)ptr;
-	if (addr == 0)
-		return (write(1, "(nil)", 5));
-	char_written = 0;
-	if (uppercase)
-		char_written += write(1, "0X", 2);
-	else
-		char_written += write(1, "0x", 2);
-	char_written += ft_print_hex_with_case(addr, uppercase);
-	return (char_written);
+	return (ft_print_hex_with_case(num, uppercase));
 }

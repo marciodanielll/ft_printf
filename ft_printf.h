@@ -22,5 +22,6 @@ int	ft_putchar(int c);
 int	ft_putstr(const char *str);
 int	ft_putptr(void *ptr, int uppercase);
 int	ft_putnbr(int n, int is_unsigned);
+int	ft_puthex(unsigned int num, int uppercase);
 
 #endif /* FT_PRINTF_H */

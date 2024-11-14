@@ -6,7 +6,7 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:18:31 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/14 17:22:45 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/14 19:18:16 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,14 @@ static int	handle_specifier(char specifier, va_list args)
 		return (ft_putptr(va_arg(args, void *), 0));
 	else if (specifier == 'd' || specifier == 'i')
 		return (ft_putnbr(va_arg(args, int), 0));
+	else if (specifier == 'x')
+		return (ft_puthex(va_arg(args, unsigned int), 0));
+	else if (specifier == 'X')
+		return (ft_puthex(va_arg(args, unsigned int), 1));
 	else if (specifier == 'u')
 		return (ft_putnbr(va_arg(args, unsigned int), 1));
+	else if (specifier == '%')
+		return (write(1, "%%", 2));
 	return (-1);
 }
 
