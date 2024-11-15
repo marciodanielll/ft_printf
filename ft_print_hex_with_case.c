@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   common.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 16:06:01 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/15 11:27:32 by mhermini         ###   ########.fr       */
+/*   Created: 2024/11/15 11:17:49 by mhermini          #+#    #+#             */
+/*   Updated: 2024/11/15 11:24:53 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putptr(void *ptr)
+static int	ft_print_hex_recursive(unsigned long addr, const char *hex_digits)
 {
-	unsigned long	addr;
-	int				char_written;
+	int	char_written;
 
-	addr = (unsigned long)ptr;
-	if (addr == 0)
-		return (write(1, "(nil)", 5));
 	char_written = 0;
-	char_written += write(1, "0x", 2);
-	char_written += ft_print_hex_with_case(addr, 0);
+	if (addr >= 16)
+		char_written += ft_print_hex_recursive(addr / 16, hex_digits);
+	char_written += write(1, &hex_digits[addr % 16], 1);
 	return (char_written);
+}
+
+int	ft_print_hex_with_case(unsigned long addr, int uppercase)
+{
+	const char	*hex_digits;
+
+	if (uppercase)
+		hex_digits = "0123456789ABCDEF";
+	else
+		hex_digits = "0123456789abcdef";
+	return (ft_print_hex_recursive(addr, hex_digits));
 }

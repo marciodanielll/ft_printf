@@ -6,7 +6,7 @@
 /*   By: mhermini <mhermini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 01:18:31 by mhermini          #+#    #+#             */
-/*   Updated: 2024/11/15 10:37:16 by mhermini         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:28:05 by mhermini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	dispatch_format_handler(char specifier, va_list args)
 		return (ft_putstr(str_arg));
 	}
 	if (specifier == 'p')
-		return (ft_putptr(va_arg(args, void *), 0));
+		return (ft_putptr(va_arg(args, void *)));
 	if (specifier == 'd' || specifier == 'i')
 		return (ft_putnbr(va_arg(args, int), 0));
 	if (specifier == 'x' || specifier == 'X')
